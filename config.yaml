@@ -1,0 +1,163 @@
+# RSS数据源配置
+rss_sources:
+  # 主要VPS提供商RSS
+  - name: "DigitalOcean"
+    url: "https://blog.digitalocean.com/feed/"
+    category: "云服务商"
+  
+  - name: "Linode"
+    url: "https://www.linode.com/blog/feed/"
+    category: "云服务商"
+
+  - name: "Vultr"
+    url: "https://www.vultr.com/feed/"
+    category: "云服务商"
+
+  - name: "AWS Blog"
+    url: "https://aws.amazon.com/blogs/feed/"
+    category: "云服务商"
+
+  - name: "Google Cloud"
+    url: "https://cloud.google.com/blog/feed/"
+    category: "云服务商"
+
+  - name: "Microsoft Azure"
+    url: "https://azure.microsoft.com/blog/feed/"
+    category: "云服务商"
+
+  - name: "Hetzner"
+    url: "https://www.hetzner.com/blog.rss"
+    category: "云服务商"
+
+  - name: "OVHcloud"
+    url: "https://www.ovhcloud.com/en-us/blog/feed/"
+    category: "云服务商"
+
+  - name: "Scaleway"
+    url: "https://blog.scaleway.com/feed/"
+    category: "云服务商"
+
+  # VPS优惠聚合网站
+  - name: "LowEndBox"
+    url: "https://lowendbox.com/feed/"
+    category: "优惠聚合"
+
+  - name: "WebHostingTalk"
+    url: "https://www.webhostingtalk.com/external.php?type=RSS2"
+    category: "论坛"
+
+  - name: "Hosting Discussion"
+    url: "https://hostingdiscussion.com/feed/"
+    category: "论坛"
+
+  # VPS评测和对比博客
+  - name: "VPS Comparison"
+    url: "https://www.vpscomparison.com/feed/"
+    category: "评测博客"
+
+  - name: "Cloud Spectator"
+    url: "https://www.cloudspectator.com/feed/"
+    category: "评测博客"
+
+  - name: "VPS Benchmark"
+    url: "https://www.vpsbenchmarks.com/feed/"
+    category: "评测博客"
+
+  # 主机优惠博客
+  - name: "Hosting Coupon"
+    url: "https://hostingcoupon.com/feed/"
+    category: "优惠博客"
+
+  - name: "VPS Deals"
+    url: "https://vpsdeals.net/feed/"
+    category: "优惠博客"
+
+  - name: "Server Deals"
+    url: "https://serverdeals.org/feed/"
+    category: "优惠博客"
+
+  - name: "Web Hosting Deal"
+    url: "https://webhostingdeal.com/feed/"
+    category: "优惠博客"
+
+  # 技术博客
+  - name: "LowEndSpirit"
+    url: "https://lowendspirit.com/feed/"
+    category: "技术博客"
+
+  - name: "Web Hosting Geeks"
+    url: "https://webhostinggeeks.com/blog/feed/"
+    category: "技术博客"
+
+  - name: "Hosting Reviews"
+    url: "https://hostingreviews.com/feed/"
+    category: "技术博客"
+
+  # Reddit相关RSS（通过RSS聚合服务）
+  - name: "Reddit VPS Deals"
+    url: "https://www.reddit.com/r/VPSDeals/.rss"
+    category: "社区"
+
+  - name: "Reddit LowEndSpirit"
+    url: "https://www.reddit.com/r/lowendspirit/.rss"
+    category: "社区"
+
+  - name: "Reddit Web Hosting"
+    url: "https://www.reddit.com/r/webhosting/.rss"
+    category: "社区"
+
+  # 其他数据源
+  - name: "WHT Deals"
+    url: "https://www.webhostingtalk.com/showthread.php?t=123456"
+    type: "forum"
+    category: "论坛"
+
+# 论坛数据源配置（需要特殊处理）
+forum_sources:
+  - name: "WHT Offers"
+    url: "https://www.webhostingtalk.com/forumdisplay.php?f=115"
+    category: "论坛"
+    parser: "wht"
+
+# 社交媒体数据源配置（需要API支持）
+social_sources:
+  - name: "Twitter VPS Deals"
+    platform: "twitter"
+    query: "VPS deal OR VPS discount OR hosting deal"
+    category: "社交媒体"
+
+  - name: "Twitter Hosting Offers"
+    platform: "twitter"
+    query: "hosting offer OR server discount OR cloud deal"
+    category: "社交媒体"
+
+# 配置选项
+settings:
+  max_items_per_source: 20  # 每个源最多抓取多少条
+  update_interval: "daily"   # 更新频率
+  output_dir: "docs"         # 输出目录（GitHub Pages）
+
+# 增强HTTP客户端配置
+http_client:
+  enabled: true              # 是否启用增强HTTP客户端
+  use_proxy: false           # 是否使用代理
+  proxy_list: []             # 代理服务器列表
+  max_retries: 3             # 最大重试次数
+  timeout: 30                # 请求超时时间（秒）
+  
+  # 延迟配置
+  delay_strategy: "adaptive"   # 延迟策略: fixed, random, linear, exponential, adaptive
+  delay_range: [2, 5]        # 请求延迟范围（秒）
+  
+  # 自适应延迟配置 (仅在 delay_strategy: adaptive 时生效)
+  adaptive_delay:
+    base_delay: 2.0          # 基础延迟时间
+    max_delay: 15.0          # 最大延迟时间
+    increase_factor: 1.5     # 错误时延迟增长因子
+    decrease_factor: 0.8     # 成功时延迟减少因子
+    error_threshold: 3       # 错误阈值
+
+# 日志配置
+logging:
+  level: "INFO"              # 日志级别: DEBUG, INFO, WARNING, ERROR
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"

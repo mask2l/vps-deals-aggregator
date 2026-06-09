@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VPS优惠汇总 - 每日更新</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        
+        .stats {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-around;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 2em;
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .stat-label {
+            color: #666;
+            margin-top: 5px;
+        }
+        
+        .filter-section {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .filter-section h3 {
+            margin-bottom: 15px;
+        }
+        
+        .filter-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            padding: 8px 16px;
+            border: 2px solid #667eea;
+            background: white;
+            color: #667eea;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .filter-btn:hover, .filter-btn.active {
+            background: #667eea;
+            color: white;
+        }
+        
+        .deals-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 20px;
+        }
+        
+        .deal-card {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .deal-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+        
+        .deal-category {
+            display: inline-block;
+            padding: 4px 12px;
+            background: #e0e7ff;
+            color: #667eea;
+            border-radius: 12px;
+            font-size: 0.85em;
+            margin-bottom: 10px;
+        }
+        
+        .deal-title {
+            font-size: 1.3em;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .deal-title a {
+            color: #333;
+            text-decoration: none;
+        }
+        
+        .deal-title a:hover {
+            color: #667eea;
+        }
+        
+        .deal-description {
+            color: #666;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+        
+        .deal-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+            font-size: 0.9em;
+            color: #888;
+        }
+        
+        .deal-source {
+            color: #667eea;
+            font-weight: 500;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #666;
+            margin-top: 40px;
+        }
+        
+        @media (max-width: 768px) {
+            .deals-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            header h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🚀 VPS优惠汇总</h1>
+            <p>每日更新 · 精选VPS优惠信息 · 助力省钱</p>
+        </header>
+        
+        <div class="stats">
+            <div class="stat-item">
+                <div class="stat-number">15</div>
+                <div class="stat-label">优惠信息</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">2</div>
+                <div class="stat-label">来源分类</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">2026-06-05 11:25:41</div>
+                <div class="stat-label">更新时间</div>
+            </div>
+        </div>
+        
+        <div class="filter-section">
+            <h3>📂 按分类筛选</h3>
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-category="all">全部</button>
+                
+                <button class="filter-btn" data-category="云服务商">云服务商</button>
+                
+                <button class="filter-btn" data-category="社区">社区</button>
+                
+            </div>
+        </div>
+        
+        <div class="deals-grid" id="dealsGrid">
+            
+            <div class="deal-card" data-category="云服务商">
+                <span class="deal-category">云服务商</span>
+                <h3 class="deal-title">
+                    <a href="https://www.akamai.com/blog/sustainability/2026/jun/building-decision-ready-climate-inventory-management-plan" target="_blank" rel="noopener">Putting CLIMATE into Practice: Building an Inventory Management Plan</a>
+                </h3>
+                <p class="deal-description">...</p>
+                <div class="deal-meta">
+                    <span class="deal-source">Linode</span>
+                    <span class="deal-date">2026-06-04 12:00</span>
+                </div>
+            </div>
+            
+            <div class="deal-card" data-category="云服务商">
+                <span class="deal-category">云服务商</span>
+                <h3 class="deal-title">
+                    <a href="https://www.akamai.com/blog/security/2026/may/protections-without-compromise-akamais-waf-aws-marketplace" target="_blank" rel="noopener">Consistent Protections Without Compromise: Akamai’s WAF Is Now on AWS Marketplace</a>
+                </h3>
+                <p class="deal-description">...</p>
+                <div class="deal-meta">
+                    <span class="deal-source">Linode</span>
+                    <span class="deal-date">2026-05-28 12:00</span>
+                </div>
+            </div>
+            
+            <div class="deal-card" data-category="云服务商">
+                <span class="deal-category">云服务商</span>
+                <h3 class="deal-title">
+                    <a href="https://www.akamai.com/blog/cloud/2026/may/distributed-ai-inference-why-placement-new-bottleneck" target="_blank" rel="noopener">Distributed AI Inference: Why Placement Is the New Bottleneck</a>
+                </h3>
+                <p class="deal-description">In real AI systems, bottlenecks don't disappear, they move. Learn about why inference placement, not raw compute, is the decisive infrastructure question....</p>
+                <div class="deal-meta">
+                    <span class="deal-source">Linode</span>
+                    <span class="deal-date">2026-05-27 09:00</span>
+                </div>
+            </div>
+            
+            <div class="deal-card" data-category="云服务商">
+                <span class="deal-category">云服务商</span>
+                <h3 class="deal-title">
+                    <a href="https://www.akamai.com/blog/cloud/2026/may/password-less-provisioning-atomic-customization-vms" target="_blank" rel="noopener">Introducing Password-Less Provisioning and Atomic Customization for VMs</a>
+                </h3>
+                <p class="deal-description">Akamai Cloud introduces password-less provisioning and atomic customization. Align with Zero Trust by eliminating root passwords and hardening VMs at creation....</p>
+                <div class="deal-meta">
+                    <span class="deal-source">Linode</span>
+                    <span class="deal-date">2026-05-26 18:00</span>
+                </div>
+            </div>
+            
+            <div class="deal-card" data-category="云服务商">
+                <span class="deal-category">云服务商</span>
+                <h3 class="deal-title">
+                    <a href="https://www.akamai.com/blog/security-research/2026/may/stealthy-p2p-cryptominer-ollama-endpoints" target="_blank" rel="noopener">Decentralized Threat: Stealthy P2P Cryptominer Targeting Ollama Endpoints</a>
+                </h3>
+                <p class="deal-description">The Akamai SIRT uncovered a custom P2P Trojan masquerading as system activity. Learn how to detect and mitigate this stealthy Go-based cryptominer....</p>
+                <div class="deal-meta">
+                    <span class="deal-source">Linode</span>
+                    <span class="deal-date">2026-05-21 20:00</span>
+                </div>
+            </div>
+            
+            <div class="deal-card" data-category="云服务商">
+                <span class="deal-category">云服务商</span>
+                <h3 class="deal-title">
+                    <a href="https://www.akamai.com/blog/security/2026/may/secure-identity-edge-akamai-partners-auth0" target="_blank" rel="noopener">Secure Identity at the Edge: Akamai Partners with Auth0</a>
+                </h3>
+                <p class="deal-description">The Akamai and Auth0 partnership secures identity at the edge by combining edge intelligence and adaptive authentication to stop fraud and enhance user trust....</p>
+                <div class="deal-meta">
+                    <span class="deal-source">Linode</span>
+                    <span class="deal-date">2026-05-21 13:00</span>
+                </div>
+            </div>
+            
+            <div class="deal-card" data-category="云服务商">
+                <span class="deal-category">云服务商</span>
+                <h3 class="deal-title">
+                    <a href="https://www.akamai.com/blog/cloud/2026/may/internet-front-door-edge-now-intelligent" target="_blank" rel="noopener">The Internet Has a Front Door — The Edge Is Now Intelligent</a>
+                </h3>
+                <p class="deal-description">Recent improvements in the capabilities of the edge network have created a smarter, more connected edge. These changes call for a reassessment of edge strategy....</p>
+                <div class="deal-meta">
+                    <span class="deal-source">Linode</span>
+                    <span class="deal-date">2026-05-14 13:00</span>
+                </div>
+            </div>
+            
+            <div class="deal-card" data-category="云服务商">
+                <span class="deal-category">云服务商</span>
+                <h3 class="deal-title">
+                    <a href="https://www.akamai.com/blog/security-research/2026/may/one-fluke-3-pattern-mcp-back-end-vulnerabilities" target="_blank" rel="noopener">One Is a Fluke, 3 Is a Pattern: MCP Back-End Vulnerabilities</a>
+                </h3>
+                <p class="deal-description">...</p>
+                <div class="deal-meta">
+                    <span class="deal-source">Linode</span>
+                    <span class="deal-date">2026-05-12 15:00</span>
+                </div>
+            </div>
+            
+            <div class="deal-card" data-category="云服务商">
+                <span class="deal-category">云服务商</span>
+                <h3 class="deal-title">
+                    <a href="https://www.akamai.com/blog/security-research/2026/may/advisory-cve-2026-34354-guardicore-local-privilege-escalation" target="_blank" rel="noopener">CVE-2026-34354: Guardicore Local Privilege Escalation Vulnerability</a>
+                </h3>
+                <p class="deal-description">Read the technical details of a security vulnerability (CVE-2026-34354) in Akamai Guardicore Platform Agent for Windows — and get clear guidance on mitigation....</p>
+                <div class="deal-meta">
+                    <span class="deal-source">Linode</span>
+                    <span class="deal-date">2026-05-08 12:00</span>
+                </div>
+            </div>
+            
+            <div class="deal-card" data-category="云服务商">
+                <span class="deal-category">云服务商</span>
+                <h3 class="deal-title">
+                    <a href="https://www.akamai.com/blog/cloud/2026/may/ai-study-organizations-struggle-maintain-latency-scale" target="_blank" rel="noopener">AI Survey: 50% of Organizations Struggle to Maintain Latency at Scale</a>
+                </h3>
+                <p class="deal-description">The Akamai State of AI Inference report captures real data from the field that describes how AI inference is being built and scaled in production today....</p>
+                <div class="deal-meta">
+                    <span class="deal-source">Linode</span>
+                    <span class="deal-date">2026-05-06 17:00</span>
+                </div>
+            </div>
+            
+            <div class="deal-card" data-category="云服务商">
+                <span class="deal-category">云服务商</span>
+                <h3 class="deal-title">
+                    <a href="https://www.akamai.com/blog/news/2026/may/akamai-2026-gartner-customers-choice-api-protection" target="_blank" rel="noopener">Akamai Is the 2026 Gartner® Peer Insights™ Customers’ Choice for API Protection</a>
+                </h3>
+                <p class="deal-description">Read why Akamai was named the only Customers’ Choice in the 2026 Gartner Peer Insights Voice of the Customer for API Protection....</p>
+                <div class="deal-meta">
+                    <span class="deal-source">Linode</span>
+                    <span class="deal-date">2026-05-06 17:00</span>
+                </div>
+            </div>
+            
+            <div class="deal-card" data-category="云服务商">
+                <span class="deal-category">云服务商</span>
+                <h3 class="deal-title">
+                    <a href="https://www.akamai.com/blog/security/2026/may/akamai-zero-trust-framework-meets-us-government-mandates" target="_blank" rel="noopener">How Akamai's Zero Trust Framework Meets Critical U.S. Government Mandates</a>
+                </h3>
+                <p class="deal-description">...</p>
+                <div class="deal-meta">
+                    <span class="deal-source">Linode</span>
+                    <span class="deal-date">2026-05-05 16:00</span>
+                </div>
+            </div>
+            
+            <div class="deal-card" data-category="社区">
+                <span class="deal-category">社区</span>
+                <h3 class="deal-title">
+                    <a href="https://www.reddit.com/r/VpsDeals/comments/1qxsqtl/infrastructure_in_slovenia_that_ignores_abuse/" target="_blank" rel="noopener">Infrastructure in Slovenia that ignores abuse reports (DMCA Ignored). Total privacy, anonymous crypto payments, and 0% logs.</a>
+                </h3>
+                <p class="deal-description"><!-- SC_OFF --><div class="md"><p><a href="https://rawhost.net">https://rawhost.net</a></p> <h1>💎 OUR NVMe VPS PLANS 💎</h1> <p><strong>Raw Power &amp; Seamless Scalability</strong></p> <p>🔥 <strong>VP...</p>
+                <div class="deal-meta">
+                    <span class="deal-source">Reddit VPS Deals</span>
+                    <span class="deal-date">2026-02-06 20:21</span>
+                </div>
+            </div>
+            
+            <div class="deal-card" data-category="社区">
+                <span class="deal-category">社区</span>
+                <h3 class="deal-title">
+                    <a href="https://www.reddit.com/r/VpsDeals/comments/45hkx2/test_post/" target="_blank" rel="noopener">Test post</a>
+                </h3>
+                <p class="deal-description"><!-- SC_OFF --><div class="md"><p>For testing purposes.</p> </div><!-- SC_ON --> &#32; submitted by &#32; <a href="https://www.reddit.com/user/Casham"> /u/Casham </a> <br /> <span><a href="https://www...</p>
+                <div class="deal-meta">
+                    <span class="deal-source">Reddit VPS Deals</span>
+                    <span class="deal-date">2016-02-12 23:40</span>
+                </div>
+            </div>
+            
+            <div class="deal-card" data-category="社区">
+                <span class="deal-category">社区</span>
+                <h3 class="deal-title">
+                    <a href="https://www.reddit.com/r/VpsDeals/comments/14jd1l/700_per_month_chicago_vps_2gb/" target="_blank" rel="noopener">$7.00 Per month Chicago vps 2GB</a>
+                </h3>
+                <p class="deal-description"><!-- SC_OFF --><div class="md"><p>2048MB memory<br /> 50GB storage<br /> 2TB month data transfer<br /> OpenVZ/SolusVM<br /> $7/month with coupon code 2048<br /> <a href="https://billing.chicagovps.net...</p>
+                <div class="deal-meta">
+                    <span class="deal-source">Reddit VPS Deals</span>
+                    <span class="deal-date">2012-12-09 06:23</span>
+                </div>
+            </div>
+            
+        </div>
+        
+        <footer>
+            <p>数据来源：各大VPS提供商官方RSS和优惠分享博客</p>
+            <p>最后更新：2026-06-05 11:25:41 | 自动更新频率：每天一次</p>
+        </footer>
+    </div>
+    
+    <script>
+        // 简单的分类筛选功能
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // 更新按钮状态
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                
+                const category = this.dataset.category;
+                document.querySelectorAll('.deal-card').forEach(card => {
+                    if (category === 'all' || card.dataset.category === category) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

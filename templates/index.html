@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VPS优惠汇总 - 每日更新</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        
+        .stats {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-around;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 2em;
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .stat-label {
+            color: #666;
+            margin-top: 5px;
+        }
+        
+        .filter-section {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .filter-section h3 {
+            margin-bottom: 15px;
+        }
+        
+        .filter-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            padding: 8px 16px;
+            border: 2px solid #667eea;
+            background: white;
+            color: #667eea;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .filter-btn:hover, .filter-btn.active {
+            background: #667eea;
+            color: white;
+        }
+        
+        .deals-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 20px;
+        }
+        
+        .deal-card {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .deal-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+        
+        .deal-category {
+            display: inline-block;
+            padding: 4px 12px;
+            background: #e0e7ff;
+            color: #667eea;
+            border-radius: 12px;
+            font-size: 0.85em;
+            margin-bottom: 10px;
+        }
+        
+        .deal-title {
+            font-size: 1.3em;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .deal-title a {
+            color: #333;
+            text-decoration: none;
+        }
+        
+        .deal-title a:hover {
+            color: #667eea;
+        }
+        
+        .deal-description {
+            color: #666;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+        
+        .deal-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+            font-size: 0.9em;
+            color: #888;
+        }
+        
+        .deal-source {
+            color: #667eea;
+            font-weight: 500;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #666;
+            margin-top: 40px;
+        }
+        
+        @media (max-width: 768px) {
+            .deals-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            header h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🚀 VPS优惠汇总</h1>
+            <p>每日更新 · 精选VPS优惠信息 · 助力省钱</p>
+        </header>
+        
+        <div class="stats">
+            <div class="stat-item">
+                <div class="stat-number">{{ total_count }}</div>
+                <div class="stat-label">优惠信息</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">{{ categories|length }}</div>
+                <div class="stat-label">来源分类</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">{{ update_time }}</div>
+                <div class="stat-label">更新时间</div>
+            </div>
+        </div>
+        
+        <div class="filter-section">
+            <h3>📂 按分类筛选</h3>
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-category="all">全部</button>
+                {% for category in categories %}
+                <button class="filter-btn" data-category="{{ category }}">{{ category }}</button>
+                {% endfor %}
+            </div>
+        </div>
+        
+        <div class="deals-grid" id="dealsGrid">
+            {% for deal in deals %}
+            <div class="deal-card" data-category="{{ deal.category }}">
+                <span class="deal-category">{{ deal.category }}</span>
+                <h3 class="deal-title">
+                    <a href="{{ deal.link }}" target="_blank" rel="noopener">{{ deal.title }}</a>
+                </h3>
+                <p class="deal-description">{{ deal.description[:200] }}...</p>
+                <div class="deal-meta">
+                    <span class="deal-source">{{ deal.source_name }}</span>
+                    <span class="deal-date">{{ deal.published }}</span>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <footer>
+            <p>数据来源：各大VPS提供商官方RSS和优惠分享博客</p>
+            <p>最后更新：{{ update_time }} | 自动更新频率：每天一次</p>
+        </footer>
+    </div>
+    
+    <script>
+        // 简单的分类筛选功能
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // 更新按钮状态
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                
+                const category = this.dataset.category;
+                document.querySelectorAll('.deal-card').forEach(card => {
+                    if (category === 'all' || card.dataset.category === category) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
