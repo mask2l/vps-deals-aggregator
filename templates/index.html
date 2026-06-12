@@ -14,130 +14,267 @@
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
             line-height: 1.6;
-            background: #f5f5f5;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
             padding: 20px;
+            min-height: 100vh;
         }
         
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
         }
         
         header {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            padding: 40px 20px;
-            border-radius: 10px;
+            padding: 50px 30px;
+            border-radius: 16px;
             margin-bottom: 30px;
             text-align: center;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: pulse 15s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
         }
         
         header h1 {
-            font-size: 2.5em;
+            font-size: 2.8em;
             margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
         }
         
         header p {
-            font-size: 1.1em;
-            opacity: 0.9;
+            font-size: 1.2em;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+            font-weight: 400;
         }
         
         .stats {
             background: white;
-            padding: 20px;
-            border-radius: 8px;
+            padding: 25px 30px;
+            border-radius: 12px;
             margin-bottom: 30px;
-            display: flex;
-            justify-content: space-around;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
         }
         
         .stat-item {
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .stat-item::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 3px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transition: width 0.3s ease;
+        }
+        
+        .stat-item:hover::after {
+            width: 80%;
         }
         
         .stat-number {
-            font-size: 2em;
-            font-weight: bold;
-            color: #667eea;
+            font-size: 2.5em;
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 5px;
         }
         
         .stat-label {
             color: #666;
             margin-top: 5px;
+            font-weight: 500;
+            font-size: 0.95em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
         
         .filter-section {
             background: white;
-            padding: 20px;
-            border-radius: 8px;
+            padding: 25px 30px;
+            border-radius: 12px;
             margin-bottom: 30px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
         }
         
         .filter-section h3 {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
+            font-size: 1.3em;
+            color: #333;
+            font-weight: 600;
         }
         
         .filter-buttons {
             display: flex;
-            gap: 10px;
+            gap: 12px;
             flex-wrap: wrap;
         }
         
         .filter-btn {
-            padding: 8px 16px;
+            padding: 10px 20px;
             border: 2px solid #667eea;
             background: white;
             color: #667eea;
-            border-radius: 20px;
+            border-radius: 25px;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            font-size: 0.95em;
         }
         
-        .filter-btn:hover, .filter-btn.active {
-            background: #667eea;
+        .filter-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+        }
+        
+        .filter-btn.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
+            border-color: transparent;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
         }
         
         .deals-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-bottom: 40px;
         }
         
         .deal-card {
             background: white;
-            border-radius: 8px;
-            padding: 20px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(255,255,255,0.8);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 320px;
+        }
+        
+        .deal-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2, #667eea);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
         }
         
         .deal-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(102, 126, 234, 0.2);
+        }
+        
+        .deal-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .deal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+            gap: 10px;
         }
         
         .deal-category {
             display: inline-block;
-            padding: 4px 12px;
-            background: #e0e7ff;
+            padding: 6px 14px;
+            background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
             color: #667eea;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.15);
+        }
+        
+        .deal-new-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
             border-radius: 12px;
-            font-size: 0.85em;
-            margin-bottom: 10px;
+            font-size: 0.75em;
+            font-weight: 600;
+            animation: shimmer 2s ease-in-out infinite;
+        }
+        
+        @keyframes shimmer {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
         }
         
         .deal-title {
-            font-size: 1.3em;
-            margin-bottom: 10px;
-            color: #333;
+            font-size: 1.25em;
+            margin-bottom: 12px;
+            color: #1a1a2e;
+            line-height: 1.4;
+            font-weight: 700;
+            flex-grow: 1;
         }
         
         .deal-title a {
-            color: #333;
+            color: #1a1a2e;
             text-decoration: none;
+            position: relative;
+            display: block;
+        }
+        
+        .deal-title a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            transition: width 0.3s ease;
+        }
+        
+        .deal-card:hover .deal-title a::after {
+            width: 100%;
         }
         
         .deal-title a:hover {
@@ -145,31 +282,104 @@
         }
         
         .deal-description {
-            color: #666;
-            margin-bottom: 15px;
-            line-height: 1.5;
+            color: #64748b;
+            margin-bottom: 16px;
+            line-height: 1.6;
+            font-size: 0.95em;
+            flex-grow: 1;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
         
         .deal-meta {
+            margin-top: auto;
+            padding-top: 16px;
+            border-top: 1px solid #f1f5f9;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-top: 15px;
-            border-top: 1px solid #eee;
-            font-size: 0.9em;
-            color: #888;
+            flex-direction: column;
+            gap: 10px;
         }
         
         .deal-source {
+            display: flex;
+            align-items: center;
+            gap: 8px;
             color: #667eea;
-            font-weight: 500;
+            font-weight: 600;
+            font-size: 0.85em;
+        }
+        
+        .deal-source::before {
+            content: '🏢';
+            font-size: 1.1em;
+        }
+        
+        .deal-date {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.85em;
+            color: #94a3b8;
+        }
+        
+        .deal-date::before {
+            content: '🕐';
+        }
+        
+        .deal-link {
+            display: inline-block;
+            margin-top: 12px;
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 0.9em;
+            font-weight: 600;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        }
+        
+        .deal-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
         }
         
         footer {
             text-align: center;
-            padding: 30px;
-            color: #666;
+            padding: 40px 20px;
+            color: #64748b;
             margin-top: 40px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        
+        footer p {
+            margin: 8px 0;
+            font-size: 0.95em;
+        }
+        
+        .footer-divider {
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            margin: 0 auto 20px;
+            border-radius: 2px;
+        }
+        
+        @media (max-width: 1024px) {
+            .deals-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .stats {
+                grid-template-columns: 1fr;
+            }
         }
         
         @media (max-width: 768px) {
@@ -179,6 +389,37 @@
             
             header h1 {
                 font-size: 2em;
+            }
+            
+            header p {
+                font-size: 1em;
+            }
+            
+            .stat-number {
+                font-size: 2em;
+            }
+            
+            .filter-buttons {
+                justify-content: center;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+            
+            header {
+                padding: 30px 20px;
+            }
+            
+            header h1 {
+                font-size: 1.8em;
+            }
+            
+            .deal-card {
+                padding: 20px;
+                min-height: 280px;
             }
         }
     </style>
@@ -218,22 +459,30 @@
         <div class="deals-grid" id="dealsGrid">
             {% for deal in deals %}
             <div class="deal-card" data-category="{{ deal.category }}">
-                <span class="deal-category">{{ deal.category }}</span>
+                <div class="deal-header">
+                    <span class="deal-category">{{ deal.category }}</span>
+                    {% if loop.index <= 3 %}
+                    <span class="deal-new-badge">NEW</span>
+                    {% endif %}
+                </div>
                 <h3 class="deal-title">
                     <a href="{{ deal.link }}" target="_blank" rel="noopener">{{ deal.title }}</a>
                 </h3>
-                <p class="deal-description">{{ deal.description[:200] }}...</p>
+                <p class="deal-description">{{ deal.description }}</p>
                 <div class="deal-meta">
                     <span class="deal-source">{{ deal.source_name }}</span>
                     <span class="deal-date">{{ deal.published }}</span>
                 </div>
+                <a href="{{ deal.link }}" target="_blank" rel="noopener" class="deal-link">查看详情 →</a>
             </div>
             {% endfor %}
         </div>
         
         <footer>
-            <p>数据来源：各大VPS提供商官方RSS和优惠分享博客</p>
-            <p>最后更新：{{ update_time }} | 自动更新频率：每天一次</p>
+            <div class="footer-divider"></div>
+            <p>💎 数据来源：各大VPS提供商官方RSS和优惠分享博客</p>
+            <p>🔄 最后更新：{{ update_time }} | ⏰ 自动更新频率：每天一次</p>
+            <p>🚀 部署于 GitHub Pages | ⚡ 由 GitHub Actions 驱动</p>
         </footer>
     </div>
     
