@@ -1,4 +1,4 @@
-name: Update VPS Deals and Deploy to GitHub Pages
+name: Update VPS Deals HTML
 
 on:
   schedule:
@@ -19,7 +19,7 @@ on:
       - '.github/workflows/update.yml'
 
 jobs:
-  update-and-deploy:
+  update-html:
     runs-on: ubuntu-latest
     
     permissions:
@@ -27,7 +27,7 @@ jobs:
     
     steps:
     - name: 检出代码
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       with:
         persist-credentials: false
     
@@ -60,7 +60,6 @@ jobs:
         git config --local user.name "github-actions[bot]"
         git add docs/
         git commit -m "🤖 自动更新VPS优惠信息"
-        git tag -a "auto-update-$(date +%Y%m%d-%H%M%S)" -m "自动更新标签"
     
     - name: 推送到GitHub
       if: steps.check_changes.outputs.has_changes == 'true'
@@ -68,13 +67,3 @@ jobs:
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         branch: main
-        tags: true
-    
-    - name: 部署到GitHub Pages
-      if: steps.check_changes.outputs.has_changes == 'true'
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./docs
-        publish_branch: gh-pages
-        force_orphan: true
