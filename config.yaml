@@ -1,135 +1,140 @@
 # RSS数据源配置
 rss_sources:
-  # 主要VPS提供商RSS
-  - name: "DigitalOcean"
-    url: "https://blog.digitalocean.com/feed/"
-    category: "云服务商"
-  
-  - name: "Linode"
-    url: "https://www.linode.com/blog/feed/"
-    category: "云服务商"
+  # VPS相关中文博客和网站
+  - name: "VPSer"
+    url: "https://www.vpser.com/feed/"
+    category: "中文博客"
 
-  - name: "Vultr"
-    url: "https://www.vultr.com/feed/"
-    category: "云服务商"
+  - name: "VPS小兽"
+    url: "https://www.vpsxxs.com/feed"
+    category: "中文博客"
 
-  - name: "AWS Blog"
-    url: "https://aws.amazon.com/blogs/feed/"
-    category: "云服务商"
+  - name: "主机之家"
+    url: "https://haozhuji.net/feed"
+    category: "中文博客"
 
-  - name: "Google Cloud"
-    url: "https://cloud.google.com/blog/feed/"
-    category: "云服务商"
+  - name: "VPSGo"
+    url: "https://vpsgo.com/feed"
+    category: "中文博客"
 
+  - name: "VPS统计"
+    url: "https://vpstj.cn/feed/"
+    category: "中文博客"
+
+  - name: "VPSCost"
+    url: "https://vpscost.com/feed"
+    category: "中文博客"
+
+  - name: "主机之家-阿里云"
+    url: "https://haozhuji.net/category/aliyun/feed"
+    category: "中文博客"
+
+  # 国外优惠聚合和论坛
+  - name: "LowEndTalk"
+    url: "https://lowendtalk.com/categories/offers/feed.rss"
+    category: "论坛"
+
+  # Reddit社区
+  - name: "Reddit VPS"
+    url: "https://www.reddit.com/R/VPS/.rss"
+    category: "社区"
+
+  - name: "Reddit HomeLab"
+    url: "https://www.reddit.com/R/homelab/.rss"
+    category: "社区"
+
+  # 澳洲优惠网站
+  - name: "OzBargain Deals"
+    url: "https://www.ozbargain.com.au/deals/feed"
+    category: "优惠聚合"
+
+  - name: "OzBargain Computers"
+    url: "https://www.ozbargain.com.au/deals/computers/feed"
+    category: "优惠聚合"
+
+  # 中文技术博客
+  - name: "ZR博客"
+    url: "http://www.zrblog.net/feed"
+    category: "中文博客"
+
+  - name: "小酷博客"
+    url: "http://www.xiaoku.net/feed"
+    category: "中文博客"
+
+  - name: "元松松博客"
+    url: "http://www.yuansongsong.com/feed"
+    category: "中文博客"
+
+  - name: "主机博客"
+    url: "http://www.hostblog.cn/feed"
+    category: "中文博客"
+
+  - name: "VPS Deck"
+    url: "http://www.vpsdeck.com/feed"
+    category: "中文博客"
+
+  - name: "夏天客"
+    url: "http://www.xiakew.com/feed"
+    category: "中文博客"
+
+  - name: "VPS之家"
+    url: "http://www.vpszj.net/feed"
+    category: "中文博客"
+
+  - name: "我呀的"
+    url: "http://www.woyard.com/feed"
+    category: "中文博客"
+
+  - name: "VPS_n"
+    url: "http://www.vpsn.cc/feed"
+    category: "中文博客"
+
+  - name: "主机BBS"
+    url: "http://www.hostbbs.net/feed"
+    category: "中文博客"
+
+  - name: "主机论坛"
+    url: "http://www.zhujiluntan.com/feed"
+    category: "中文博客"
+
+  - name: "VPS经典"
+    url: "http://www.vpsjsd.com/feed"
+    category: "中文博客"
+
+  - name: "VPS VS"
+    url: "http://www.vpsvs.com/feed"
+    category: "中文博客"
+
+  - name: "IDC评测"
+    url: "https://www.idcspy.com/feed"
+    category: "中文博客"
+
+  - name: "我爱VPS"
+    url: "https://woaivps.com/feed"
+    category: "中文博客"
+
+  - name: "搬网工站"
+    url: "https://www.banwagongzw.com/feed"
+    category: "中文博客"
+
+  - name: "主机狗"
+    url: "https://www.zhujigo.com/feed"
+    category: "中文博客"
+
+  - name: "VPS主机之家"
+    url: "https://vpszhujihome.com/feed"
+    category: "中文博客"
+
+  # 云服务商（保留主要服务商）
   - name: "Microsoft Azure"
     url: "https://azure.microsoft.com/blog/feed/"
     category: "云服务商"
 
-  - name: "Hetzner"
-    url: "https://www.hetzner.com/blog.rss"
-    category: "云服务商"
-
-  - name: "OVHcloud"
-    url: "https://www.ovhcloud.com/en-us/blog/feed/"
-    category: "云服务商"
-
-  - name: "Scaleway"
-    url: "https://blog.scaleway.com/feed/"
-    category: "云服务商"
-
-  # VPS优惠聚合网站
-  - name: "LowEndBox"
-    url: "https://lowendbox.com/feed/"
-    category: "优惠聚合"
-
-  - name: "WebHostingTalk"
-    url: "https://www.webhostingtalk.com/external.php?type=RSS2"
-    category: "论坛"
-
-  - name: "Hosting Discussion"
-    url: "https://hostingdiscussion.com/feed/"
-    category: "论坛"
-
-  # VPS评测和对比博客
-  - name: "VPS Comparison"
-    url: "https://www.vpscomparison.com/feed/"
-    category: "评测博客"
-
-  - name: "Cloud Spectator"
-    url: "https://www.cloudspectator.com/feed/"
-    category: "评测博客"
-
-  - name: "VPS Benchmark"
-    url: "https://www.vpsbenchmarks.com/feed/"
-    category: "评测博客"
-
-  # 主机优惠博客
-  - name: "Hosting Coupon"
-    url: "https://hostingcoupon.com/feed/"
-    category: "优惠博客"
-
-  - name: "VPS Deals"
-    url: "https://vpsdeals.net/feed/"
-    category: "优惠博客"
-
-  - name: "Server Deals"
-    url: "https://serverdeals.org/feed/"
-    category: "优惠博客"
-
-  - name: "Web Hosting Deal"
-    url: "https://webhostingdeal.com/feed/"
-    category: "优惠博客"
-
-  # 技术博客
-  - name: "LowEndSpirit"
-    url: "https://lowendspirit.com/feed/"
-    category: "技术博客"
-
-  - name: "Web Hosting Geeks"
-    url: "https://webhostinggeeks.com/blog/feed/"
-    category: "技术博客"
-
-  - name: "Hosting Reviews"
-    url: "https://hostingreviews.com/feed/"
-    category: "技术博客"
-
-  # Reddit相关RSS（通过RSS聚合服务）
-  - name: "Reddit VPS Deals"
-    url: "https://www.reddit.com/r/VPSDeals/.rss"
-    category: "社区"
-
-  - name: "Reddit LowEndSpirit"
-    url: "https://www.reddit.com/r/lowendspirit/.rss"
-    category: "社区"
-
-  - name: "Reddit Web Hosting"
-    url: "https://www.reddit.com/r/webhosting/.rss"
-    category: "社区"
-
-  # 其他数据源
-  - name: "WHT Deals"
-    url: "https://www.webhostingtalk.com/showthread.php?t=123456"
-    type: "forum"
-    category: "论坛"
-
 # 论坛数据源配置（需要特殊处理）
-forum_sources:
-  - name: "WHT Offers"
-    url: "https://www.webhostingtalk.com/forumdisplay.php?f=115"
-    category: "论坛"
-    parser: "wht"
+forum_sources: []
 
 # 社交媒体数据源配置（需要API支持）
-social_sources:
-  - name: "Twitter VPS Deals"
-    platform: "twitter"
-    query: "VPS deal OR VPS discount OR hosting deal"
-    category: "社交媒体"
-
-  - name: "Twitter Hosting Offers"
-    platform: "twitter"
-    query: "hosting offer OR server discount OR cloud deal"
-    category: "社交媒体"
+social_sources: []
 
 # 配置选项
 settings:
