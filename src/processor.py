@@ -136,9 +136,41 @@ class DealProcessor:
         sorted_items = sorted(items, key=parse_date, reverse=True)
         return sorted_items
     
+    def truncate_description(self, item: Dict) -> Dict:
+        """
+        截取描述，特别是针对Reddit内容
+        
+        Args:
+            item: 原始文章项
+            
+        Returns:
+            处理后的文章项
+        """
+        description = item.get('description', '')
+        source_name = item.get('source_name', '')
+        
+        # 对Reddit内容进行特殊处理
+        if 'reddit' in source_name.lower():
+            # 移除HTML标签
+            clean_desc = re.sub(r'<[^>]+>', '', description)
+            # 移除多余的空白
+            clean_desc = re.sub(r'\s+', ' ', clean_desc).strip()
+            # 截取到100字符
+            if len(clean_desc) > 100:
+                clean_desc = clean_desc[:97] + '...'
+            item['description'] = clean_desc
+        else:
+            # 其他来源截取到150字符
+            if len(description) > 150:
+                clean_desc = re.sub(r'<[^>]+>', '', description)
+                clean_desc = re.sub(r'\s+', ' ', clean_desc).strip()
+                item['description'] = clean_desc[:147] + '...'
+        
+        return item
+    
     def process(self, items: List[Dict]) -> List[Dict]:
         """
-        完整处理流程：过滤 -> 去重 -> 排序
+        完整处理流程：过滤 -> 截取描述 -> 去重 -> 排序
         
         Args:
             items: 原始文章列表
@@ -148,6 +180,9 @@ class DealProcessor:
         """
         # 过滤优惠信息
         deals = self.filter_deals(items)
+        
+        # 截取描述（特别是Reddit内容）
+        deals = [self.truncate_description(deal) for deal in deals]
         
         # 去重
         unique_deals = self.remove_duplicates(deals)

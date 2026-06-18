@@ -293,6 +293,13 @@
             text-overflow: ellipsis;
         }
         
+        .reddit-description {
+            -webkit-line-clamp: 2;
+            font-size: 0.9em;
+            color: #888;
+            font-style: italic;
+        }
+        
         .deal-meta {
             margin-top: auto;
             padding-top: 12px;
@@ -467,7 +474,7 @@
                 <h3 class="deal-title">
                     <a href="{{ deal.link }}" target="_blank" rel="noopener">{{ deal.title }}</a>
                 </h3>
-                <p class="deal-description">{{ deal.description }}</p>
+                <p class="deal-description {% if 'reddit' in deal.source_name.lower() %}reddit-description{% endif %}">{{ deal.description }}</p>
                 <div class="deal-meta">
                     <span class="deal-source">{{ deal.source_name }}</span>
                     <span class="deal-date">{{ deal.published }}</span>
